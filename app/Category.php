@@ -22,4 +22,12 @@ class Category extends Model
     {
         return $this->belongsTo('App\Venue');
     }
+
+    /**
+     * Get the products for the category.
+     */
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }
