@@ -36,4 +36,26 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    /**
+     * The orders that belong to the product.
+     */
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order')->withPivot([
+            'quantity',
+            'unit_price',
+        ]);
+    }
+
+    /**
+     * Set the product's name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['name'] = ucfirst($value);
+    }
 }

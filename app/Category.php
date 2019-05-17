@@ -30,4 +30,15 @@ class Category extends Model
     {
         return $this->hasMany('App\Product');
     }
+
+    /**
+     * Set the category's name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['name'] = ucfirst($value);
+    }
 }

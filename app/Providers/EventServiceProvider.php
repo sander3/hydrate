@@ -33,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         // Application Events...
+        'App\Events\OrderCreated' => [
+            'App\Listeners\LogCreatedOrder',
+        ],
     ];
 
     /**
