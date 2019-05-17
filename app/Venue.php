@@ -46,4 +46,12 @@ class Venue extends Model
     {
         return $this->hasManyThrough('App\Product', 'App\Category');
     }
+
+    /**
+     * Get the orders for the venue.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 }
