@@ -17,3 +17,10 @@ Route::post('register', 'Auth\RegisterController@register')->name('auth.register
 Route::post('email', 'Auth\LinkController@sendMagicLinkEmail')->name('auth.email')->middleware(['guest', 'throttle:5,5']);
 
 Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout')->middleware('auth');
+
+// Application Routes
+Route::post('venues/geolocation', 'VenueController@searchByGeolocation')->name('venues.geolocation');
+
+Route::apiResources([
+    'venues' => 'VenueController',
+]);
