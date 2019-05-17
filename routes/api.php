@@ -25,5 +25,11 @@ Route::apiResources([
     'venues'            => 'VenueController',
     'venue.categories'  => 'CategoryController',
     'category.products' => 'ProductController',
-    'orders'            => 'OrderController',
 ]);
+
+Route::post('venue/{venue}/orders', 'OrderController@store')->name('venue.orders.store');
+
+Route::post('order/{order}/payments', 'PaymentController@store')->name('order.payments.store')->middleware('signed');
+
+Route::get('payments/{payment}', 'PaymentController@show')->name('payments.show')->middleware('signed');
+Route::post('payments/{payment}', 'PaymentController@update')->name('payments.update')->middleware('signed');

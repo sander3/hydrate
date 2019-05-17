@@ -36,6 +36,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\OrderCreated' => [
             'App\Listeners\LogCreatedOrder',
         ],
+
+        'App\Events\OrderSaved' => [
+            'App\Listeners\DispatchOrderPaidEvent',
+        ],
+
+        'App\Events\OrderPaid' => [
+            'App\Listeners\LogPaidOrder',
+            'App\Listeners\UpdateOrderStatus',
+        ],
     ];
 
     /**

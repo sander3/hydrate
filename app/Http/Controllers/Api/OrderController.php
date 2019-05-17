@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Order;
+use App\Venue;
 use Illuminate\Http\Request;
+use Faker\Generator as Faker;
 use App\Http\Requests\StoreOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,11 +27,18 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreOrder  $request
+     * @param  \App\Venue  $venue
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrder $request)
-    {
-        $order = new Order;
+    public function store(
+        Faker $faker,
+        StoreOrder $request,
+        Venue $venue
+    ) {
+        $order = $venue->orders()->make([
+            'color'  => $faker->safeHexColor,
+            'letter' => $faker->randomLetter,
+        ]);
 
         if (Auth::check()) {
             $order->user()->associate($request->user());
@@ -41,7 +50,9 @@ class OrderController extends Controller
 
         $order->products()->attach($products);
 
-        return $order;
+        return [
+            'paymentUrl' => $order->payments()->make()->url->store,
+        ];
     }
 
     /**
