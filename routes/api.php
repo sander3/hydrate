@@ -22,6 +22,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout')->middl
 Route::post('venues/geolocation', 'VenueController@searchByGeolocation')->name('venues.geolocation');
 
 Route::apiResources([
-    'venues'           => 'VenueController',
-    'venue.categories' => 'CategoryController',
+    'venues'            => 'VenueController',
+    'venue.categories'  => 'CategoryController',
+    'category.products' => 'ProductController',
 ]);

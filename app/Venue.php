@@ -38,4 +38,12 @@ class Venue extends Model
     {
         return $this->hasMany('App\Category');
     }
+
+    /**
+     * Get all of the products for the venue.
+     */
+    public function products()
+    {
+        return $this->hasManyThrough('App\Product', 'App\Category');
+    }
 }
