@@ -30,4 +30,12 @@ class Venue extends Model
     protected $dates = [
         'expired_at',
     ];
+
+    /**
+     * Get the categories for the venue.
+     */
+    public function categories()
+    {
+        return $this->hasMany('App\Category');
+    }
 }
