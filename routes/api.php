@@ -25,4 +25,5 @@ Route::apiResources([
     'venues'            => 'VenueController',
     'venue.categories'  => 'CategoryController',
     'category.products' => 'ProductController',
+    'orders'            => 'OrderController',
 ]);

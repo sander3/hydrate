@@ -36,4 +36,12 @@ class User extends Authenticatable implements CanMagicallyLoginContract
     {
         return $this->hasMany('App\Log');
     }
+
+    /**
+     * Get the orders for the user.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 }
